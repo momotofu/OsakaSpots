@@ -4,7 +4,7 @@
   "description": "A map of all the best places in Osaka, Japan",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --progress --colors --port 2992",
+    "start": "concurrently --kill-others \"webpack-dev-server --mode development --progress --colors --port 2992\" \"nodemon ./src/backend/server.js\"",
     "build": "rm dist/*; webpack --mode production --progress --profile --colors"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
+    "concurrently": "^3.6.0",
     "nodemon": "^1.17.5",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
@@ -29,6 +30,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "express": "^4.16.3",
     "lodash": "^4.17.10"
   }
 }

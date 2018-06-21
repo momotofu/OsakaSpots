@@ -7,7 +7,7 @@ module.exports = (env, options) => {
     return {
       entry: {
           app: [
-            path.resolve(__dirname, './src/index.js')
+            path.resolve(__dirname, './src/frontend/app.js')
           ]
       },
       output: {
