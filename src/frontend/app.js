@@ -1,14 +1,28 @@
-import template from './index.pug'
+import * as ko from 'knockout'
+import mainPage from './test.pug'
 
-function component() {
-  var element = document.createElement('div')
+const rootElement = document.getElementById('root')
 
-  // Lodash, now imported by this script
-  element.innerHTML = template({
-    name: "Chris"
-  })
+function render() {
+  const element = document.createElement('div')
 
-  return element
+  element.innerHTML = mainPage()
+
+  rootElement.appendChild(element)
 }
 
-document.body.appendChild(component())
+// render HTML
+render()
+
+// import and register components
+import LikeWidget from './components/likeWidget'
+
+ko.components.register('likewidget', LikeWidget)
+
+// apply bindings for main ViewModel
+const main = function() {
+  console.log('Knockout is a runnin\'')
+}
+
+ko.applyBindings(main, rootElement)
+

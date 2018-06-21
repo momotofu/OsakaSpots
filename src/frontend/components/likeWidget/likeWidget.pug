@@ -1,0 +1,5 @@
+div.like-or-dislike(data-bind="visible: !chosenValue()")
+  button(data-bind="click: like") Like it
+  button(data-bind="click: dislike") Dislike it
+div.result(data-bind="visible: chosenValue")
+  You #[strong(data-bind="text: chosenValue")] it!
