@@ -9,13 +9,15 @@ const devMode = process.env.NODE_ENV === 'development'
 const indexTemplate = pug.compileFile(path.resolve(__dirname, './index.pug'))
 
 // path for the JavaScript bundle
-var bundlePath = '/assets/js/'
+var bundlePath = devMode ? '' : '/assets/js/'
 
 // get the name of hashed JavaScript bundle
-fs.readdir(path.resolve(__dirname, '../../dist'), (err, files) => {
-  // there should only be one file
-  bundlePath += files[0]
-})
+if (!devMode) {
+  fs.readdir(path.resolve(__dirname, '../../dist'), (err, files) => {
+    // there should only be one file
+    bundlePath += files[0]
+  })
+}
 
 /**
  * routes
