@@ -5,7 +5,7 @@ function component() {
 
   // Lodash, now imported by this script
   element.innerHTML = template({
-    name: "test'"
+    name: "Chris"
   })
 
   return element
