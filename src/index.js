@@ -1,12 +1,14 @@
-import _ from 'lodash';
+import template from './index.pug'
 
 function component() {
-  var element = document.createElement('div');
+  var element = document.createElement('div')
 
   // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = template({
+    name: "Chris'"
+  })
 
-  return element;
+  return element
 }
 
-document.body.appendChild(component());
+document.body.appendChild(component())

@@ -16,7 +16,7 @@ module.exports = (env, options) => {
         chunkFilename: '[id].[chunkhash].js'
       },
       resolve: {
-        extensions: ['.js', '.css']
+        extensions: ['.js', '.css', '.pug']
       },
       devServer: {
        headers: { "Access-Control-Allow-Origin": "*" }
@@ -24,8 +24,13 @@ module.exports = (env, options) => {
       module: {
           rules: [
               {
-                test: /\.js$/i, use: 'babel-loader',
+                test: /\.js$/i,
+                use: 'babel-loader',
                 exclude: /node_modules/
+              },
+              {
+                test: /\.pug$/i,
+                use: 'pug-loader'
               }
           ]
       },
