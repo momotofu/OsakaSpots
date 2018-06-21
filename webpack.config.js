@@ -1,8 +1,9 @@
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = (env, options) => {
+    const devMode = options.mode === 'development'
+
     return {
       entry: {
           app: [
@@ -12,8 +13,8 @@ module.exports = (env, options) => {
       output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: 'http://localhost:2992/assets/',
-        filename: '[name].[chunkhash].js',
-        chunkFilename: '[id].[chunkhash].js'
+        filename: devMode ? 'bundle.js' : '[name].[chunkhash].js',
+        chunkFilename: devMode ? 'bundle.js' : '[name].[chunkhash].js'
       },
       resolve: {
         extensions: ['.js', '.css', '.pug']

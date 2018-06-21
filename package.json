@@ -4,8 +4,8 @@
   "description": "A map of all the best places in Osaka, Japan",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode development --progress --colors --port 2992 --content-base build/public",
-    "build": "webpack --mode production --progress --profile --colors"
+    "start": "webpack-dev-server --mode development --progress --colors --port 2992",
+    "build": "rm dist/*; webpack --mode production --progress --profile --colors"
   },
   "repository": {
     "type": "git",
