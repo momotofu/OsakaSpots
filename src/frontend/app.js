@@ -10,19 +10,20 @@ function render() {
   const element = document.createElement('div')
 
   element.innerHTML = mainPage()
-  //rootElement.prepend(element)
+  rootElement.prepend(element)
+  console.log('sup')
 }
 
 render()
 
 // import and register components
-//import LikeWidget from './components/likeWidget'
+import LikeWidget from './components/likeWidget'
 
-//ko.components.register('likewidget', LikeWidget)
+ko.components.register('likewidget', LikeWidget)
 
 // apply bindings for main ViewModel
 const main = function() {
   console.log('Knockout is a runnin\' yah')
 }
 
-//ko.applyBindings(main, rootElement)
+ko.applyBindings(main, rootElement)

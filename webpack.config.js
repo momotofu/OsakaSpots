@@ -7,7 +7,7 @@ module.exports = (env, options) => {
     return {
       entry: {
           app: [
-            //path.resolve(__dirname, './src/frontend/app.js'),
+            path.resolve(__dirname, './src/frontend/app.js'),
             path.resolve(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css')
           ]
       },
