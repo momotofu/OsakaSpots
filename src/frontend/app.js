@@ -17,13 +17,19 @@ function render() {
 render()
 
 // import and register components
-import LikeWidget from './components/likeWidget'
+import GoogleMap from './components/googleMap'
 
-ko.components.register('likewidget', LikeWidget)
+ko.components.register('googlemap', GoogleMap)
 
 // apply bindings for main ViewModel
-const main = function() {
+function Main() {
   console.log('Knockout is a runnin\' yah')
+
+  this.initMaps = function(GoogleMapsVM) {
+    GoogleMapsVM.init()
+  }
 }
 
-ko.applyBindings(main, rootElement)
+const MainViewModel = new Main()
+
+ko.applyBindings(MainViewModel, rootElement)

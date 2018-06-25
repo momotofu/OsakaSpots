@@ -6,6 +6,7 @@ const pug = require('pug')
 
 // constants
 const devMode = process.env.NODE_ENV === 'development'
+const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY
 
 // path for the JavaScript bundle
 var bundlePath = devMode ? '' : '/assets/js/'
@@ -26,10 +27,12 @@ app.get('/assets/js/:filename', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+  console.log('api key s: ', googleMapsAPIKey)
   const indexTemplate = pug.compileFile(path.resolve(__dirname, './index.pug'))
 
   res.send(indexTemplate({
-    scriptPath: devMode ? 'http://localhost:2992/assets/bundle.js' : bundlePath
+    scriptPath: devMode ? 'http://localhost:2992/assets/bundle.js' : bundlePath,
+    googleMapsAPIKey: googleMapsAPIKey
   }))
 })
 
