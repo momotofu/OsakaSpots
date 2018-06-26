@@ -27,7 +27,7 @@ function Main() {
   console.log('Knockout is a runnin\' yah')
 
   this.initMaps = function(GoogleMapsVM) {
-    GoogleMapsVM.init()
+    GoogleMapsVM.initGoogleMaps()
   }
 }
 

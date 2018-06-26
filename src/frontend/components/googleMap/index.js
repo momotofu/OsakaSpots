@@ -7,6 +7,11 @@ const template = googleMap()
 const viewModel = function(params) {
   const that = this
 
+  // observables
+
+  /**
+   * SET UP GOOGLE MAPS API - START
+   */
   // an instance of the Google map
   this.map = {}
 
@@ -15,7 +20,7 @@ const viewModel = function(params) {
   this.APIDidLoad = ko.observable(false)
 
   // sets up the Google API scripts and loads the map
-  this.init = function() {
+  this.initGoogleMaps = function() {
     // create a Google API Script
     const APIScript = document.createElement('script')
     window.APIScriptCallback = document.createElement('script')
@@ -50,13 +55,16 @@ const viewModel = function(params) {
     });
   }
 
-  // observable subscriptions
   this.APIDidLoad.subscribe(function(didLoad) {
     console.log('didLoad: ', didLoad, google)
     if (didLoad) {
       this.instantiateMap()
     }
   }, this)
+
+  /**
+   * SET UP GOOGLE MAPS API - END
+   */
 
   // keep this function at the bottom of this class
   params.callback(this)
