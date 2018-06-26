@@ -38,7 +38,7 @@ const viewModel = function(params) {
   // methods
   this.instantiateMap = function() {
     this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.7413549, lng: -73.9980244},
+      center: {lat: 34.629900, lng: 135.496302},
       zoom: 13,
       mapTypeControl: false
     });
