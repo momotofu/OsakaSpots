@@ -5,6 +5,7 @@ const template = googleMap()
 const viewModel = function(params) {
   const that = this
 
+  this.map = {}
   this.APIDidLoad = ko.observable(false)
   this.init = function() {
     // create a Google API Script
@@ -22,8 +23,7 @@ const viewModel = function(params) {
     // create a callback to fire when Google API has loaded
     APIScriptCallback.text = `
         window.GoogleAPIReady = function() {
-          console.log('test x')
-          // window.APIScriptCallback.dispatchEvent(new Event('GoogleAPIReady'))
+          window.APIScriptCallback.dispatchEvent(new Event('GoogleAPIReady'))
         }
     `
 
@@ -33,9 +33,21 @@ const viewModel = function(params) {
     firstScriptTag.parentNode.insertBefore(APIScript, firstScriptTag)
   }
 
+  // methods
+  this.instantiateMap = function() {
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.7413549, lng: -73.9980244},
+      zoom: 13,
+      mapTypeControl: false
+    });
+  }
+
   // setup subscriptions
   this.APIDidLoad.subscribe(function(didLoad) {
-    console.log('didLoad: ', didLoad)
+    console.log('didLoad: ', didLoad, google)
+    if (didLoad) {
+      this.instantiateMap()
+    }
   }, this)
 
   // keep this function at the bottom

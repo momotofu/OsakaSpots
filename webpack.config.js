@@ -18,7 +18,7 @@ module.exports = (env, options) => {
         chunkFilename: devMode ? 'bundle.js' : '[name].[chunkhash].js'
       },
       resolve: {
-        extensions: ['.js', '.css', '.pug']
+        extensions: ['.js', '.styl', '.css', '.pug']
       },
       devServer: {
        headers: { "Access-Control-Allow-Origin": "*" }
@@ -39,6 +39,14 @@ module.exports = (env, options) => {
                 use: [
                   'style-loader',
                   'css-loader'
+                ]
+              },
+              {
+                test: /\.styl$/,
+                use: [
+                  'style-loader',
+                  'css-loader',
+                  'stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
                 ]
               }
           ]
