@@ -7,11 +7,10 @@ const template = googleMap()
 const viewModel = function(params) {
   const that = this
 
-  // observables
-
   /**
    * SET UP GOOGLE MAPS API - START
    */
+
   // an instance of the Google map
   this.map = {}
 

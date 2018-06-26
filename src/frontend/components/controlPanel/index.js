@@ -1,6 +1,7 @@
 import * as ko from 'knockout'
 
-import googleMap from './controlPanel.pug'
+import googleMap from './controlPanel'
+import Listing from './listing'
 import './styles'
 
 const template = googleMap()
