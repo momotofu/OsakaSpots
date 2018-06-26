@@ -7,8 +7,14 @@ const template = googleMap()
 const viewModel = function(params) {
   const that = this
 
+  // an instance of the Google map
   this.map = {}
+
+  // when this is changed to true, the map is instantiated via observiable
+  // subscription
   this.APIDidLoad = ko.observable(false)
+
+  // sets up the Google API scripts and loads the map
   this.init = function() {
     // create a Google API Script
     const APIScript = document.createElement('script')
@@ -44,7 +50,7 @@ const viewModel = function(params) {
     });
   }
 
-  // setup subscriptions
+  // observable subscriptions
   this.APIDidLoad.subscribe(function(didLoad) {
     console.log('didLoad: ', didLoad, google)
     if (didLoad) {
@@ -52,7 +58,7 @@ const viewModel = function(params) {
     }
   }, this)
 
-  // keep this function at the bottom
+  // keep this function at the bottom of this class
   params.callback(this)
 }
 
