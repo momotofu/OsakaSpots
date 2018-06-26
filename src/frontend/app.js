@@ -11,15 +11,16 @@ function render() {
 
   element.innerHTML = mainPage()
   rootElement.prepend(element)
-  console.log('sup')
 }
 
 render()
 
 // import and register components
 import GoogleMap from './components/googleMap'
+import ControlPanel from './components/controlPanel'
 
 ko.components.register('googlemap', GoogleMap)
+ko.components.register('controlpanel', ControlPanel)
 
 // apply bindings for main ViewModel
 function Main() {
