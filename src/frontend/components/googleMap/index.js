@@ -1,5 +1,7 @@
 import * as ko from 'knockout'
+
 import googleMap from './googleMap.pug'
+import './index.styl'
 
 const template = googleMap()
 const viewModel = function(params) {
