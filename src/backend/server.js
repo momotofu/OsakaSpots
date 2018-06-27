@@ -36,6 +36,10 @@ app.get('/', (req, res) => {
   }))
 })
 
+app.get('/listings', (req, res) => {
+
+})
+
 app.listen(process.env.PORT || 9000, () => {
   console.log(`Example app listening on port ${process.env.PORT || 9000}!`)
 })

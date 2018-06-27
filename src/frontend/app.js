@@ -29,6 +29,10 @@ function Main() {
   this.initMaps = function(GoogleMapsVM) {
     GoogleMapsVM.initGoogleMaps()
   }
+
+  this.initControlPanel = function(controlPanel) {
+    controlPanel.init()
+  }
 }
 
 const MainViewModel = new Main()

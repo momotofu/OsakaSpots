@@ -55,7 +55,6 @@ const viewModel = function(params) {
   }
 
   this.APIDidLoad.subscribe(function(didLoad) {
-    console.log('didLoad: ', didLoad, google)
     if (didLoad) {
       this.instantiateMap()
     }
