@@ -10,7 +10,6 @@ const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY
 console.log('Google Maps API key: ', googleMapsAPIKey)
 
 const bookshelf = require('./bookshelf')
-console.log('bookshelf: ', bookshelf)
 
 // path for the JavaScript bundle
 var bundlePath = devMode ? '' : '/assets/js/'
