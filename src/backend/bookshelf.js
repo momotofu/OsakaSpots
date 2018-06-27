@@ -2,8 +2,6 @@ const path = require('path'),
       fs = require('fs'),
       dbFile = fs.openSync(path.join(__dirname, 'app.db'), 'a')
 
-console.log('dbfile: ', dbFile)
-
 var knex = require('knex')({
   client: 'sqlite3',
   connection: {
@@ -11,4 +9,7 @@ var knex = require('knex')({
   }
 });
 
-module.exports = require('bookshelf')(knex);
+const bookshelf = require('bookshelf')(knex)
+bookshelf.plugin(require('bookshelf-schema'))
+
+module.exports = bookshelf
