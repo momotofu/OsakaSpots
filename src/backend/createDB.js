@@ -9,7 +9,6 @@ HatsushibaStation.set('lng', 1.452)
 
 saveModel(HatsushibaStation)
 
-
 function saveModel(model) {
   return model.save().then((listing) => {
     console.log(`saved ${listing.attributes.title} yo!`)

@@ -3,7 +3,7 @@ exports.up = function(knex) {
     .createTable('listings', function(table) {
       table.increments('id').primary()
       table.string('icon').defaultTo('pin')
-      table.string('title', 128)
+      table.string('title', 128).unique()
       table.string('category')
       table.float('lat')
       table.float('lng')
