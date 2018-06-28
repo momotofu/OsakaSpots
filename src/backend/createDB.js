@@ -1,15 +1,19 @@
 const Listing = require('./model')
 
-const testListing = new Listing()
-testListing.test()
-testListing.set('icon', 'pin')
-testListing.set('title', 'Hatsushiba')
-testListing.set('category', 'station')
-testListing.set('lat', 1.213)
-testListing.set('lng', 1.452)
+const HatsushibaStation = new Listing()
+HatsushibaStation.set('icon', 'pin')
+HatsushibaStation.set('title', 'Hatsushiba')
+HatsushibaStation.set('category', 'station')
+HatsushibaStation.set('lat', 1.213)
+HatsushibaStation.set('lng', 1.452)
 
-testListing.save().then((listing) => {
-  console.log(`saved ${listing.title} yo!`)
-}).catch((err) => {
-  console.log(`error ${err}`)
-})
+saveModel(HatsushibaStation)
+
+
+function saveModel(model) {
+  return model.save().then((listing) => {
+    console.log(`saved ${listing.attributes.title} yo!`)
+  }).catch((err) => {
+    console.log(`error ${err}`)
+  })
+}
