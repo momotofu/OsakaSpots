@@ -1,6 +1,7 @@
 const Listing = require('./model')
 
 const testListing = new Listing()
+testListing.test()
 testListing.set('icon', 'pin')
 testListing.set('title', 'Hatsushiba')
 testListing.set('category', 'station')

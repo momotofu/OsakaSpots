@@ -1,8 +1,11 @@
 const bookshelf = require('./bookshelf')
 
 const Listing = bookshelf.Model.extend({
-  tablename: 'listings',
-  hasTimestamps: true
+  tableName: 'listings',
+  hasTimestamps: true,
+  test: function() {
+    console.log('big test')
+  }
 })
 
 module.exports = Listing

@@ -28,7 +28,7 @@ app.get('/assets/js/:filename', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  const indexTemplate = pug.compileFile(path.resolve(__dirname, './index.pug'))
+  const indexTemplate = pug.compileFile(path.resolve(__dirname, '../frontend/index.pug'))
 
   res.send(indexTemplate({
     scriptPath: devMode ? 'http://localhost:2992/assets/bundle.js' : bundlePath,
