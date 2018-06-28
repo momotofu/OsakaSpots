@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "concurrently --kill-others \"webpack-dev-server --mode development --progress --colors --port 2992\" \"PORT=8080 NODE_ENV=development nodemon ./src/backend/server.js\"",
-    "build": "rm dist/*; webpack --mode production --progress --profile --colors"
+    "build": "rm dist/*; webpack --mode production --progress --profile --colors",
+    "migrate": "knex migrate:latest --knexfile src/backend/knexfile.js"
   },
   "repository": {
     "type": "git",
@@ -39,9 +40,8 @@
   },
   "dependencies": {
     "bookshelf": "^0.13.3",
-    "bookshelf-schema": "^0.3.6",
     "express": "^4.16.3",
-    "knex": "^0.13.0",
+    "knex": "^0.14.6",
     "lodash": "^4.17.10",
     "pg": "^7.4.3",
     "sqlite3": "^4.0.1"
