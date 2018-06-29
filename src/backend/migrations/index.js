@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return knex.schema
-    .createTable('listings', function(table) {
+    .createTable('listings', table => {
       table.increments('id').primary()
       table.string('icon').defaultTo('pin')
       table.string('title', 128).unique()
@@ -13,5 +13,5 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTable('listings')
+    .dropTableIfExists('listings')
 }

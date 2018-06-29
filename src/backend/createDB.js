@@ -1,18 +1,21 @@
-const Listing = require('./model').Listing
+const { Listing } = require('./model')
+const { transaction } = require('objection')
+const knex = Listing.knex()
 
-const HatsushibaStation = new Listing()
-HatsushibaStation.set('icon', 'pin')
-HatsushibaStation.set('title', 'Hatsushiba')
-HatsushibaStation.set('category', 'station')
-HatsushibaStation.set('lat', 1.213)
-HatsushibaStation.set('lng', 1.452)
 
-saveModel(HatsushibaStation)
-
-function saveModel(model) {
-  return model.save().then((listing) => {
-    console.log(`saved ${listing.attributes.title} yo!`)
-  }).catch((err) => {
-    console.log(`error ${err}`)
+// fill up the database with some awesome listings
+try {
+  transaction(knex, async (trx) => {
+    await Listing
+      .query(trx)
+      .insert({
+        icon: 'pin',
+        title: 'Hatsushiba',
+        category: 'station',
+        lat: 1.213,
+        lng: 1.452
+      })
   })
+} catch (err) {
+  console.log(`It didn\'t quite work master Wayne. ${err}`)
 }

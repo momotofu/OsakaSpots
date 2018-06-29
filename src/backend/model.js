@@ -1,8 +1,13 @@
-const bookshelf = require('./bookshelf')
+const knex = require('knex')(require('./knexfile')),
+      { Model } = require('objection')
 
-const Listing = bookshelf.Model.extend({
-  tableName: 'listings',
-  hasTimestamps: true
-})
+// connect knex and objection
+Model.knex(knex)
 
-module.exports.Listing = Listing
+class Listing extends Model {
+  static get tableName() {
+    return 'listings'
+  }
+}
+
+module.exports = { Listing }
