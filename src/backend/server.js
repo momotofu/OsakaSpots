@@ -3,7 +3,7 @@ const app = express()
 const path = require('path')
 const fs = require('fs')
 const pug = require('pug')
-const models = require('./model')
+const { Listing } = require('./model')
 
 // constants
 const devMode = process.env.NODE_ENV === 'development'
@@ -37,15 +37,14 @@ app.get('/', (req, res) => {
   }))
 })
 
-app.get('/listings', (req, res) => {
-  console.log('listings: ', models.Listing)
-  models.Listing.fetchAll()
-    .then((listings) => {
-      res.send(listings)
+app.get('/listings', async (req, res) => {
+  const listings = await Listing.query()
+    .skipUndefined()
+    .catch( err => {
+      console.log('err: ', err)
     })
-    .catch((err) => {
-      console.log(err)
-    })
+
+  res.send(listings)
 })
 
 app.listen(process.env.PORT || 9000, () => {
