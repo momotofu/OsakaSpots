@@ -5,4 +5,4 @@ const Listing = bookshelf.Model.extend({
   hasTimestamps: true
 })
 
-module.exports = Listing
+module.exports.Listing = Listing

@@ -1,4 +1,4 @@
-const Listing = require('./model')
+const Listing = require('./model').Listing
 
 const HatsushibaStation = new Listing()
 HatsushibaStation.set('icon', 'pin')

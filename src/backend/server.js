@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const fs = require('fs')
 const pug = require('pug')
+const models = require('./model')
 
 // constants
 const devMode = process.env.NODE_ENV === 'development'
@@ -37,7 +38,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/listings', (req, res) => {
-
+  console.log('listings: ', models.Listing)
+  models.Listing.fetchAll()
+    .then((listings) => {
+      res.send(listings)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 })
 
 app.listen(process.env.PORT || 9000, () => {

@@ -3,6 +3,7 @@ module.exports = {
   connection: {
     filename: 'app.db'
   },
-  useNullAsDefault: true
+  useNullAsDefault: true,
+  debug: true
 }
 
