@@ -1,8 +1,4 @@
-const knex = require('knex')(require('./knexfile')),
-      { Model } = require('objection')
-
-// connect knex and objection
-Model.knex(knex)
+const Model = require('objection').Model
 
 class Listing extends Model {
   static get tableName() {

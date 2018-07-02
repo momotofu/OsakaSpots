@@ -1,7 +1,10 @@
-const { Listing } = require('./model')
-const { transaction } = require('objection')
-const knex = Listing.knex()
+const Listing = require('./model').Listing
+      transaction = require('objection').transaction,
+      Knex = require('knex'),
+      knexConfig = require('./knexfile'),
+      knex = Knex(knexConfig)
 
+Listing.knex(knex)
 
 // fill up the database with some awesome listings
 try {
@@ -14,6 +17,9 @@ try {
         category: 'station',
         lat: 1.213,
         lng: 1.452
+      })
+      .catch( err => {
+        console.log('error: ', err)
       })
   })
 } catch (err) {
