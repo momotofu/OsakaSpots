@@ -40,52 +40,6 @@ module.exports = router => {
         console.log('err: ', err)
       })
 
-
-    // Send dummy data until not table found error solved
-    //const listings = [
-      //{
-        //icon: 'pin',
-        //title: 'Hatsushiba',
-        //category: 'station',
-        //lat: 1.23,
-        //lng: 12.4
-      //},
-      //{
-        //icon: 'pin',
-        //title: 'Ramen shop',
-        //category: 'food',
-        //lat: 1.23,
-        //lng: 12.4
-      //},
-      //{
-        //icon: 'pin',
-        //title: 'Bread shop',
-        //category: 'food',
-        //lat: 1.23,
-        //lng: 12.4
-      //},
-      //{
-        //icon: 'pin',
-        //title: 'Park',
-        //category: 'recreation',
-        //lat: 1.23,
-        //lng: 12.4
-      //},
-      //{
-        //icon: 'pin',
-        //title: 'Museum',
-        //category: 'Science',
-        //lat: 1.23,
-        //lng: 12.4
-      //},
-      //{
-        //icon: 'pin',
-        //title: 'Namba',
-        //category: 'city',
-        //lat: 1.23,
-        //lng: 12.4
-      //}
-    //]
     res.send(listings)
   })
 }

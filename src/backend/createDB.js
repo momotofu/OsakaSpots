@@ -7,21 +7,57 @@ const Listing = require('./model').Listing
 Listing.knex(knex)
 
 // fill up the database with some awesome listings
-try {
-  transaction(knex, async (trx) => {
+async function main() {
+  return await transaction(knex, async (trx) => {
     await Listing
       .query(trx)
-      .insert({
-        icon: 'pin',
-        title: 'Hatsushiba',
-        category: 'station',
-        lat: 1.213,
-        lng: 1.452
-      })
-      .catch( err => {
-        console.log('error: ', err)
-      })
+      .insertGraph([
+        {
+          icon: 'pin',
+          title: 'Hatsushiba',
+          category: 'station',
+          lat: 1.23,
+          lng: 12.4
+        },
+        {
+          icon: 'pin',
+          title: 'Ramen shop',
+          category: 'food',
+          lat: 1.23,
+          lng: 12.4
+        },
+        {
+          icon: 'pin',
+          title: 'Bread shop',
+          category: 'food',
+          lat: 1.23,
+          lng: 12.4
+        },
+        {
+          icon: 'pin',
+          title: 'Park',
+          category: 'recreation',
+          lat: 1.23,
+          lng: 12.4
+        },
+        {
+          icon: 'pin',
+          title: 'Museum',
+          category: 'Science',
+          lat: 1.23,
+          lng: 12.4
+        },
+        {
+          icon: 'pin',
+          title: 'Namba',
+          category: 'city',
+          lat: 1.23,
+          lng: 12.4
+        }
+      ])
   })
-} catch (err) {
-  console.log(`It didn\'t quite work master Wayne. ${err}`)
 }
+
+main()
+  .then(() => console.log('success'))
+  .catch(console.error)
