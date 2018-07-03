@@ -3,7 +3,13 @@ const Listing = require('./model').Listing
 // constants
 const devMode = process.env.NODE_ENV === 'development'
 const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY
-console.log('Google Maps API key: ', googleMapsAPIKey)
+
+// log environment variables
+Object.keys(process.env).forEach((key) => {
+  if (String(key).indexOf('npm') === -1) {
+    console.log(`${key}: ${eval(`process.env.${key}`)}`)
+  }
+})
 
 // path for the JavaScript bundle
 var bundlePath = devMode ? '' : '/assets/js/'

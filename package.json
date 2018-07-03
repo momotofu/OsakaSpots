@@ -4,7 +4,7 @@
   "description": "A map of all the best places in Osaka, Japan",
   "private": true,
   "scripts": {
-    "start": "concurrently --kill-others \"webpack-dev-server --mode development --progress --colors --port 2992\" \"PORT=8080 NODE_ENV=development; source ./src/backend/exports.sh; nodemon ./src/backend/server.js\"",
+    "start": "concurrently --kill-others \"webpack-dev-server --mode development --progress --colors --port 2992\" \"source ./src/backend/exports.sh; export PORT=8080; export NODE_ENV=development; nodemon ./src/backend/server.js\"",
     "build": "rm dist/*; webpack --mode production --progress --profile --colors",
     "migrate": "knex migrate:latest --knexfile src/backend/knexfile.js"
   },
