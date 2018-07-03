@@ -12,7 +12,6 @@ const express = require('express')
 
 
 // connect Objection ORM to database
-console.log('config: ', knexConfig)
 Model.knex(knex)
 
 // set up express app
