@@ -16,17 +16,21 @@ const viewModel = function(params) {
         // create a dummy listing while server data is fetched
         new Listing('pin', 'Hatsushiba Station', '{lat: 0, lng: 0}', 'station')
       ])
+
+      this.fetchListings()
     } else {
       this.listings(JSON.parse(localStorage.osakaSpots.listings))
     }
   }
 
   // getters
-  this.fetchListings = function() {
+  this.fetchListings = async function() {
     const url = '/listings'
 
-    $.getJSON(url, function(data) {
-      console.log('data: ', data)
+    return await $.getJSON(url, function(data) {
+      return JSON.parse(data).map((graph) => {
+        return new Listing(graph)
+      })
     })
       .fail(function(error) {
         console.log('error: ', error)

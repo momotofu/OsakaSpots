@@ -1,7 +1,10 @@
+const path = require('path'),
+      dbPath = path.resolve(__dirname, './app.db')
+
 module.exports = {
   client: 'sqlite3',
   connection: {
-    filename: './app.db'
+    filename: dbPath
   },
   useNullAsDefault: true,
   debug: true
