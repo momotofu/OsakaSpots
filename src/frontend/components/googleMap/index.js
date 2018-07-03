@@ -6,6 +6,12 @@ import './index.styl'
 const template = googleMap()
 const viewModel = function(params) {
   const that = this
+  this.listings = []
+
+  // setters
+  this.setListings = (listings) => {
+    this.listings = listings
+  }
 
   /**
    * SET UP GOOGLE MAPS API - START
