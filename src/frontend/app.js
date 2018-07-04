@@ -1,9 +1,14 @@
 // dependencies
 import * as ko from 'knockout'
-
 import mainPage from './mainPage.pug'
+import { keyhandlerBindingFactory } from './utils'
 
+const ENTER_KEY = 13
 const rootElement = document.getElementById('root')
+
+// a custom binding to handle the enter key
+ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY)
+
 
 // render HTML
 function render() {

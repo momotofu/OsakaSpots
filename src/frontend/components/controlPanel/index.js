@@ -68,6 +68,14 @@ const viewModel = function(params) {
 
   }
 
+  this.searchInputEnter = (viewModel, event) => {
+    event.preventDefault()
+    const listings = viewModel.visableListings()
+
+    if (listings.length > 0)
+      this.selectedListing(listings[0])
+  }
+
   this.controlPanelListingClick = (listing, event) => {
     event.preventDefault()
     this.selectedListing(listing)
