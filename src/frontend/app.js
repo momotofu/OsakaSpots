@@ -26,15 +26,23 @@ ko.components.register('controlpanel', ControlPanel)
 function Main() {
   console.log('Knockout is a runnin\' yah')
   this.listings = []
+  this.googleMapsVMInstance = null
 
   this.initMaps = function(GoogleMapsVM) {
     GoogleMapsVM.setListings(this.listings)
     GoogleMapsVM.initGoogleMaps()
+    this.googleMapsVMInstance = GoogleMapsVM
+
   }.bind(this)
 
   this.initControlPanel = function(controlPanel) {
     controlPanel.visableListings.subscribe((listings) => {
       this.listings = listings
+    })
+    controlPanel.selectedListing.subscribe((listing) => {
+      if (this.googleMapsVMInstance)
+        this.googleMapsVMInstance.zoomToListing(listing)
+
     })
     controlPanel.init()
   }.bind(this)

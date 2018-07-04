@@ -1,7 +1,8 @@
-aside.control-panel
+aside.control-panel.p-2
   input#searchInput.form-control.mb-3(
     type="text",
     placeholder="filter (i.e. food,art)",
     data-bind="event: { input: searchInputChange }")
   ul.list-group(data-bind="foreach: visableListings")
-   li.list-group-item(data-bind="text: title")
+    li.list-group-item.control-panel__listing(
+      data-bind="text: title, click: $parent.controlPanelListingClick")

@@ -21,6 +21,7 @@ const viewModel = function(params) {
 
   this.visableListings = ko.observableArray([])
   this.listings = ko.observableArray([])
+  this.selectedListing = ko.observable()
 
   //////////////////////////////////////////////////////////////////////////////
   // setters
@@ -65,6 +66,11 @@ const viewModel = function(params) {
       this.setVisableListings(this.listings())
     }
 
+  }
+
+  this.controlPanelListingClick = (listing, event) => {
+    event.preventDefault()
+    this.selectedListing(listing)
   }
 
   /////////////////////////////////////////////////////////////////////////////
