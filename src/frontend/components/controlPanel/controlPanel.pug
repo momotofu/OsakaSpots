@@ -1,4 +1,4 @@
 aside.control-panel
   input.form-control(type="text", placeholder="filter (i.e. food, art)").mb-3
-  ul.list-group
-   li.list-group-item Cras justo odio
+  ul.list-group(data-bind="foreach: visableListings")
+   li.list-group-item(data-bind="text: title")
