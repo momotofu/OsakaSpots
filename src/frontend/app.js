@@ -25,16 +25,16 @@ ko.components.register('controlpanel', ControlPanel)
 // apply bindings for main ViewModel
 function Main() {
   console.log('Knockout is a runnin\' yah')
-  this.googleMapsInstance = {}
+  this.listings = []
 
   this.initMaps = function(GoogleMapsVM) {
+    GoogleMapsVM.setListings(this.listings)
     GoogleMapsVM.initGoogleMaps()
-    this.googleMapsInstance = GoogleMapsVM
   }.bind(this)
 
   this.initControlPanel = function(controlPanel) {
     controlPanel.visableListings.subscribe((listings) => {
-      this.googleMapsInstance.setListings(listings)
+      this.listings = listings
     })
     controlPanel.init()
   }.bind(this)

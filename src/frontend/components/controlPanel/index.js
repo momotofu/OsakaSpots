@@ -22,14 +22,15 @@ const viewModel = function(params) {
   // getters
   //////////////////////////////////////////////////////////////////////////////
 
-  this.fetchListings = async function() {
+  this.fetchListings = async () => {
     const url = '/listings'
 
-    return await $.getJSON(url, function(data) {
+    return await $.getJSON(url, (data) => {
       return data.map((graph) => {
         return new Listing(graph)
       })
     }).fail(console.error)
+  }
 
   /////////////////////////////////////////////////////////////////////////////
   // subscriptions
@@ -58,7 +59,7 @@ const viewModel = function(params) {
       // fetch listings from server. On success update listings observableArray
       this.fetchListings()
         .then(listings => {
-          this.listings(listings)
+          this.setListings(listings)
           localStorage.osakaSpots = JSON.stringify({ listings })
         })
         .catch(console.error)
