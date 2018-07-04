@@ -1,5 +1,6 @@
 import * as ko from 'knockout'
 import * as $ from 'jquery'
+import * as Fuse from 'fuse.js'
 
 import googleMap from './controlPanel'
 import Listing from './listing'
@@ -7,6 +8,17 @@ import './styles'
 
 const template = googleMap()
 const viewModel = function(params) {
+  //////////////////////////////////////////////////////////////////////////////
+  // constants
+  //////////////////////////////////////////////////////////////////////////////
+
+  this.searchInput = document.getElementById('searchInput')
+  this.fuse = null
+
+  //////////////////////////////////////////////////////////////////////////////
+  // observables
+  //////////////////////////////////////////////////////////////////////////////
+
   this.visableListings = ko.observableArray([])
   this.listings = ko.observableArray([])
 
@@ -16,6 +28,10 @@ const viewModel = function(params) {
 
   this.setListings = (listings) => {
     this.listings(listings)
+  }
+
+  this.setVisableListings = (listings) => {
+    this.visableListings(listings)
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -32,12 +48,45 @@ const viewModel = function(params) {
     }).fail(console.error)
   }
 
+  //////////////////////////////////////////////////////////////////////////////
+  // methods
+  //////////////////////////////////////////////////////////////////////////////
+
+  this.searchInputChange = (viewModel, event) => {
+    event.preventDefault()
+    const searchString = event.data
+
+    if (searchString && searchString.length >= 1) {
+      // update visable listings with fuse results
+      this.fuse.list = this.visableListings() // narrow data sample on each query
+      this.setVisableListings(this.fuse.search(event.data))
+
+    } else {
+      this.setVisableListings(this.listings())
+    }
+
+  }
+
   /////////////////////////////////////////////////////////////////////////////
   // subscriptions
   ////////////////////////////////////////////////////////////////////////////
 
   // any time listings is updated, update the DOM as well
   this.listings.subscribe((listings) => {
+    // create a new Fuse.js fuzzy search instance
+    this.fuse = new Fuse(listings, {
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharlength: 1,
+      keys: [
+        "title",
+        "category"
+      ]
+    })
+
     this.visableListings(listings)
   })
 

@@ -1,4 +1,7 @@
 aside.control-panel
-  input.form-control(type="text", placeholder="filter (i.e. food, art)").mb-3
+  input#searchInput.form-control.mb-3(
+    type="text",
+    placeholder="filter (i.e. food,art)",
+    data-bind="event: { input: searchInputChange }")
   ul.list-group(data-bind="foreach: visableListings")
    li.list-group-item(data-bind="text: title")
