@@ -7,7 +7,44 @@ import './styles'
 
 const template = googleMap()
 const viewModel = function(params) {
-  this.listings = ko.observableArray()
+  this.visableListings = ko.observableArray([])
+  this.listings = ko.observableArray([])
+
+  //////////////////////////////////////////////////////////////////////////////
+  // setters
+  //////////////////////////////////////////////////////////////////////////////
+
+  this.setListings = (listings) => {
+    this.listings(listings)
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // getters
+  //////////////////////////////////////////////////////////////////////////////
+
+  this.fetchListings = async function() {
+    const url = '/listings'
+
+    return await $.getJSON(url, function(data) {
+      return data.map((graph) => {
+        return new Listing(graph)
+      })
+    }).fail(console.error)
+
+  /////////////////////////////////////////////////////////////////////////////
+  // subscriptions
+  ////////////////////////////////////////////////////////////////////////////
+
+  // any time listings is updated, update the DOM as well
+  this.listings.subscribe((listings) => {
+    this.visableListings(listings)
+  })
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Initializer
+  //////////////////////////////////////////////////////////////////////////////
+
   this.init = function() {
     // check if listings are in user's local storage
     if (!localStorage.osakaSpots || !JSON.parse(localStorage.osakaSpots).hasOwnProperty('listings')) {
@@ -31,20 +68,6 @@ const viewModel = function(params) {
       // observable array with local data.
       this.listings(JSON.parse(localStorage.osakaSpots).listings)
     }
-  }
-
-  // getters
-  this.fetchListings = async function() {
-    const url = '/listings'
-
-    return await $.getJSON(url, function(data) {
-      return data.map((graph) => {
-        return new Listing(graph)
-      })
-    })
-      .fail(function(error) {
-        console.log('error: ', error)
-      })
   }
 
   // keep this function at the bottom of this class
