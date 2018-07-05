@@ -24,6 +24,24 @@ const viewModel = function(params) {
     console.log(`zoom to ${listing.title}`)
   }
 
+  this.createMarker = (data) => {
+    const marker = new google.maps.Marker({
+      position: {lat: 34.629900, lng: 135.496302}, //{ lat: data.lat, lng: data.lng },
+      title: data.title,
+      animation: google.maps.Animation.DROP,
+      id: data.id,
+      map: this.map,
+      isVisable: true
+    })
+
+    // add event listeners
+    marker.addListener('click', function() {
+      console.log('I was clicked', this.title)
+    })
+
+    return marker
+  }
+
   this.updateMarkers = (listings) => {
     if (!this.map) return
 
@@ -36,15 +54,8 @@ const viewModel = function(params) {
     listings.forEach((listing) => {
       // if the marker hasn't already been created then create it
       if (!(listing.id in this.markers)) {
-        this.markers[listing.id] = new google.maps.Marker({
-          position: {lat: 34.629900, lng: 135.496302}, //{ lat: listing.lat, lng: listing.lng },
-          title: listing.title,
-          animation: google.maps.Animation.DROP,
-          id: listing.id,
-          map: this.map,
-          isVisable: true
-        })
-        // otherwise set the marker to visible
+        this.markers[listing.id] = this.createMarker(listing)
+          // otherwise set the marker to visible
       } else {
         this.markers[listing.id].isVisable = true
       }
