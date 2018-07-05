@@ -6,11 +6,11 @@ import './index.styl'
 const template = googleMap()
 const viewModel = function(params) {
   const that = this
-  this.listings = []
+  this.listings = ko.observableArray([])
 
   // setters
   this.setListings = (listings) => {
-    this.listings = listings
+    this.listings(listings)
   }
 
   //////////////////////////////////////////////////////////////////////////////
