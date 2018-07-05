@@ -27,6 +27,12 @@ const viewModel = function(params) {
   this.updateMarkers = (listings) => {
     if (!this.map) return
 
+    // set all markers to not visible
+    for (let key in this.markers) {
+      this.markers[key].isVisable = false
+    }
+
+    // set incoming markers to visible
     listings.forEach((listing) => {
       // if the marker hasn't already been created then create it
       if (!(listing.id in this.markers)) {
@@ -35,14 +41,25 @@ const viewModel = function(params) {
           title: listing.title,
           animation: google.maps.Animation.DROP,
           id: listing.id,
-          map: this.map
+          map: this.map,
+          isVisable: true
         })
-        // otherwise if marker exists but isn't in the visable listings
-        // then hide it
+        // otherwise set the marker to visible
       } else {
-
+        this.markers[listing.id].isVisable = true
       }
+
     })
+
+    // only display visible markers on map
+    for (let key in this.markers) {
+      if (!this.markers[key].isVisable) {
+        this.markers[key].setMap(null)
+      } else {
+        this.markers[key].setMap(this.map)
+      }
+    }
+
   }
 
   //////////////////////////////////////////////////////////////////////////////
