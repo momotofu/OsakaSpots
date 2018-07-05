@@ -10,6 +10,7 @@ const viewModel = function(params) {
   this.map = null
   this.listings = ko.observableArray([])
   this.markers = {}
+  this.infoWindow = null
 
   // setters
   this.setListings = (listings) => {
@@ -24,6 +25,25 @@ const viewModel = function(params) {
     console.log(`zoom to ${listing.title}`)
   }
 
+  const populateInfoWindow = (marker, infowindow) => {
+    if (infowindow.marker != marker) {
+      infowindow.setContent('')
+      infowindow.marker = marker
+      infowindow.setContent(
+      `<div>${marker.title}</div>`)
+
+
+      // make sure the marker property is cleared if the infowindow is closed.
+      infowindow.addListener('closeclick', function() {
+        infowindow.marker = null;
+      })
+
+      infowindow.open(map, marker)
+    }
+  }
+
+
+  // create a google maps marker and add default listeners
   this.createMarker = (data) => {
     const marker = new google.maps.Marker({
       position: {lat: 34.629900, lng: 135.496302}, //{ lat: data.lat, lng: data.lng },
@@ -37,11 +57,14 @@ const viewModel = function(params) {
     // add event listeners
     marker.addListener('click', function() {
       console.log('I was clicked', this.title)
+      populateInfoWindow(this, that.infoWindow)
     })
 
     return marker
   }
 
+  // this is called whenever the visable markers in the control panel
+  // component are updated
   this.updateMarkers = (listings) => {
     if (!this.map) return
 
@@ -93,7 +116,6 @@ const viewModel = function(params) {
 
     APIScriptCallback.addEventListener('GoogleAPIReady', function(e) {
       that.APIDidLoad(true)
-      that.updateMarkers(that.listings())
     })
 
     // create a callback to fire when Google API has loaded
@@ -116,10 +138,12 @@ const viewModel = function(params) {
       zoom: 13,
       mapTypeControl: false
     });
+    this.infoWindow =  new google.maps.InfoWindow();
+    this.updateMarkers(that.listings())
   }
 
   this.APIDidLoad.subscribe(function(didLoad) {
-    if (didLoad) {
+    if (didLoad){
       this.instantiateMap()
     }
   }, this)
