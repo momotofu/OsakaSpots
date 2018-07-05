@@ -6,7 +6,10 @@ import './index.styl'
 const template = googleMap()
 const viewModel = function(params) {
   const that = this
+
+  this.map = null
   this.listings = ko.observableArray([])
+  this.markers = {}
 
   // setters
   this.setListings = (listings) => {
@@ -21,12 +24,30 @@ const viewModel = function(params) {
     console.log(`zoom to ${listing.title}`)
   }
 
+  this.updateMarkers = (listings) => {
+    if (!this.map) return
+
+    listings.forEach((listing) => {
+      // if the marker hasn't already been created then create it
+      if (!(listing.id in this.markers)) {
+        this.markers[listing.id] = new google.maps.Marker({
+          position: {lat: 34.629900, lng: 135.496302}, //{ lat: listing.lat, lng: listing.lng },
+          title: listing.title,
+          animation: google.maps.Animation.DROP,
+          id: listing.id,
+          map: this.map
+        })
+        // otherwise if marker exists but isn't in the visable listings
+        // then hide it
+      } else {
+
+      }
+    })
+  }
+
   //////////////////////////////////////////////////////////////////////////////
   // SET UP GOOGLE MAPS API - START
   //////////////////////////////////////////////////////////////////////////////
-
-  // an instance of the Google map
-  this.map = {}
 
   // when this is changed to true, the map is instantiated via observiable
   // subscription
@@ -44,6 +65,7 @@ const viewModel = function(params) {
 
     APIScriptCallback.addEventListener('GoogleAPIReady', function(e) {
       that.APIDidLoad(true)
+      that.updateMarkers(that.listings())
     })
 
     // create a callback to fire when Google API has loaded
@@ -78,6 +100,14 @@ const viewModel = function(params) {
   // SET UP GOOGLE MAPS API - END
   //////////////////////////////////////////////////////////////////////////////
 
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Subscriptions
+  //////////////////////////////////////////////////////////////////////////////
+
+  this.listings.subscribe((listings) => {
+    this.updateMarkers(listings)
+  })
   // keep this function at the bottom of this class
   params.callback(this)
 }

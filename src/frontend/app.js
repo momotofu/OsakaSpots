@@ -42,8 +42,12 @@ function Main() {
 
   this.initControlPanel = function(controlPanel) {
     controlPanel.visableListings.subscribe((listings) => {
+      if (this.googleMapsVMInstance)
+        this.googleMapsVMInstance.setListings(listings)
+
       this.listings = listings
     })
+
     controlPanel.selectedListing.subscribe((listing) => {
       if (this.googleMapsVMInstance)
         this.googleMapsVMInstance.zoomToListing(listing)
