@@ -1,8 +1,10 @@
 const Listing = require('./model').Listing
+const yelp = require('yelp-fusion')
 
 // constants
 const devMode = process.env.NODE_ENV === 'development'
 const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY
+const yelpAPIKey = process.env.YELP_API_KEY
 
 // log environment variables
 Object.keys(process.env).forEach((key) => {
@@ -47,5 +49,23 @@ module.exports = router => {
       })
 
     res.send(listings)
+  })
+
+  router.get('/listings/Yelp/:options', async (req, res) => {
+
+    const searchRequest = {
+      term: req.query.term,
+      location: 'Osaka'
+    }
+
+    const client = yelp.client(yelpAPIKey);
+
+    client.search(searchRequest)
+      .then(response => {
+        const firstResult = response.jsonBody.businesses
+        const prettyJson = JSON.stringify(firstResult, null, 2)
+        res.send(prettyJson)
+      })
+      .catch(console.error)
   })
 }
