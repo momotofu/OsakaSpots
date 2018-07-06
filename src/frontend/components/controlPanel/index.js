@@ -57,8 +57,11 @@ const viewModel = function(params) {
     event.preventDefault()
     const searchString = event.data
 
+    // update visable listings with fuse results
     if (searchString && searchString.length >= 1) {
-      // update visable listings with fuse results
+      // prevent listings flicker and extra work
+      if (this.visableListings().length === 1) return
+
       this.fuse.list = this.visableListings() // narrow data sample on each query
       this.setVisableListings(this.fuse.search(event.data))
 
