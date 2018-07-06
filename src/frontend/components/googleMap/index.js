@@ -25,20 +25,49 @@ const viewModel = function(params) {
     console.log(`zoom to ${listing.title}`)
   }
 
-  const populateInfoWindow = (marker, infowindow) => {
-    if (infowindow.marker != marker) {
-      infowindow.setContent('')
-      infowindow.marker = marker
-      infowindow.setContent(
-      `<div>${marker.title}</div>`)
+  const getYelpJSON = async (id) => {
+    const res = await fetch(`/listings/Yelp/business/${id}`)
+    return res.json()
+  }
+
+  const populateInfoWindow = (marker, infoWindow) => {
+    if (infoWindow.marker != marker) {
+      infoWindow.setContent('')
+      infoWindow.marker = marker
+      infoWindow.setContent(
+        `<div id="infoWindow">
+          <div class="card-body">
+          <h5 class="card-title">${marker.title}</h5>
+          </div>
+        </div>`)
+
+      // get JSON from yelp api and populate infoWindow html with data
+      getYelpJSON(marker.id)
+        .then((json) => {
+          const infoWindowEl = document.getElementById('infoWindow')
+          infoWindowEl.innerHTML = `
+            <img class="card-img-top" src=${json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg'}>
+            <div class="card-body">
+              <h5 class="card-title">${json.name}</h5>
+              <h6 class="card-subtitle mb-1">${json.alias}</h6>
+              <a href=${json.url} target="_blank" class="card-link">check it out on yelp</a>
+              <hr />
+              <strong>rating: ${json.rating} stars</strong>
+              <h6>${json.phone}</h6>
+            </div>
+            `
+        })
+        .catch((err) => {
+          console.error(err)
+        })
 
 
-      // make sure the marker property is cleared if the infowindow is closed.
-      infowindow.addListener('closeclick', function() {
-        infowindow.marker = null;
+      // make sure the marker property is cleared if the infoWindow is closed.
+      infoWindow.addListener('closeclick', function() {
+        infoWindow.marker = null;
       })
 
-      infowindow.open(map, marker)
+      infoWindow.open(map, marker)
     }
   }
 
@@ -46,17 +75,16 @@ const viewModel = function(params) {
   // create a google maps marker and add default listeners
   this.createMarker = (data) => {
     const marker = new google.maps.Marker({
-      position: {lat: 34.629900, lng: 135.496302}, //{ lat: data.lat, lng: data.lng },
+      position: { lat: data.lat, lng: data.lng },
       title: data.title,
       animation: google.maps.Animation.DROP,
-      id: data.id,
+      id: data.yelpId,
       map: this.map,
       isVisable: true
     })
 
     // add event listeners
     marker.addListener('click', function() {
-      console.log('I was clicked', this.title)
       populateInfoWindow(this, that.infoWindow)
     })
 
