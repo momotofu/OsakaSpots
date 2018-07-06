@@ -13,20 +13,15 @@ async function main() {
       .query(trx)
       .insertGraph([
         {
+          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
-          title: 'Hatsushiba',
-          category: 'station',
-          lat: 1.23,
-          lng: 12.4
-        },
-        {
-          icon: 'pin',
-          title: 'Ramen shop',
+          title: 'Bell cafe',
           category: 'food',
-          lat: 1.23,
-          lng: 12.4
+          lat: 34.5441948584636,
+          lng: 135.531021729112
         },
         {
+          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
           title: 'Bread shop',
           category: 'food',
@@ -34,6 +29,7 @@ async function main() {
           lng: 12.4
         },
         {
+          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
           title: 'Park',
           category: 'recreation',
@@ -41,6 +37,7 @@ async function main() {
           lng: 12.4
         },
         {
+          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
           title: 'Museum',
           category: 'Science',
@@ -48,6 +45,7 @@ async function main() {
           lng: 12.4
         },
         {
+          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
           title: 'Namba',
           category: 'city',
@@ -59,5 +57,8 @@ async function main() {
 }
 
 main()
-  .then(() => console.log('success'))
+  .then(() => {
+    console.log('success')
+    process.exit()
+  })
   .catch(console.error)
