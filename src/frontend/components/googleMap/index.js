@@ -22,8 +22,9 @@ const viewModel = function(params) {
   //////////////////////////////////////////////////////////////////////////////
 
   this.zoomToListing = (listing) => {
-    this.map.setCenter({ lat: listing.lat, lng: listing.lng })
+    this.map.setCenter({ lat: listing.lat + .0061, lng: listing.lng })
     this.map.setZoom(15)
+    markerClickEvent.call(this.markers[listing.id])
   }
 
   const getYelpJSON = async (id) => {
@@ -86,21 +87,23 @@ const viewModel = function(params) {
     })
 
     // add event listeners
-    marker.addListener('click', function() {
-      populateInfoWindow(this, that.infoWindow)
-
-      // animate marker
-      if (this.getAnimation() != null) {
-          this.setAnimation(null);
-      } else {
-          this.setAnimation(google.maps.Animation.BOUNCE);
-          setTimeout(() => {
-            this.setAnimation(null)
-          }, 2000)
-      }
-    })
+    marker.addListener('click', markerClickEvent)
 
     return marker
+  }
+
+  const markerClickEvent = function() {
+    populateInfoWindow(this, that.infoWindow)
+
+    // animate marker
+    if (this.getAnimation() != null) {
+        this.setAnimation(null);
+    } else {
+        this.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(() => {
+          this.setAnimation(null)
+        }, 2000)
+    }
   }
 
   // this is called whenever the visable markers in the control panel
