@@ -93,7 +93,7 @@ const viewModel = function(params) {
     // create a new Fuse.js fuzzy search instance
     this.fuse = new Fuse(listings, {
       shouldSort: true,
-      threshold: 0.6,
+      threshold: 0.1,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
