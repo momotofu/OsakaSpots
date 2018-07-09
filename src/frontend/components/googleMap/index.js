@@ -46,13 +46,13 @@ const viewModel = function(params) {
         .then((json) => {
           const infoWindowEl = document.getElementById('infoWindow')
           infoWindowEl.innerHTML = `
-            <img class="card-img-top" src=${json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg'}>
+            <img class="card-img-top card-img" src=${json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg'}>
             <div class="card-body">
               <h5 class="card-title">${json.name}</h5>
               <h6 class="card-subtitle mb-1">${json.alias}</h6>
               <a href=${json.url} target="_blank" class="card-link">check it out on yelp</a>
               <hr />
-              <strong>rating: ${json.rating} stars</strong>
+              <strong class="mb-2">rating: ${json.rating} stars</strong>
               <h6>${json.phone}</h6>
             </div>
             `
