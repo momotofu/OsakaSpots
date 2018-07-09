@@ -21,12 +21,12 @@ async function main() {
           lng: 135.531021729112
         },
         {
-          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
+          yelpId: 'kVS18Mt-PRd3eeJm0r8JJg',
           icon: 'pin',
-          title: 'Bread shop',
-          category: 'food',
-          lat: 1.23,
-          lng: 12.4
+          title: 'Tori No Keiji',
+          category: ['food', 'ramen'],
+          lat: 34.5549130004266,
+          lng: 135.506566336266
         },
         {
           yelpId: '_ncMVMISgAlRJ6mKbOWljw',
