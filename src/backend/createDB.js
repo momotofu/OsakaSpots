@@ -51,6 +51,14 @@ async function main() {
           category: 'food, mexican, tacos, taco, burritos',
           lat: 34.6748287,
           lng: 135.5011935
+        },
+        {
+          yelpId: 'y223PkinRw3Q2t_qznomwQ',
+          icon: 'pin',
+          title: 'Senjunoyu',
+          category: 'onsen, hotspring, relaxation, spa, bath, public bath',
+          lat: 34.5447810272016,
+          lng: 135.526481871338
         }
       ])
   })
