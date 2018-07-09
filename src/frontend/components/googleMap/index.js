@@ -25,12 +25,6 @@ const viewModel = function(params) {
     console.log(`zoom to ${listing.title}`)
   }
 
-  // google maps default settings need some cleaning up
-  const polishInfoWindowDesign = () => {
-    const s = document.getElementsByClassName('gm-style-iw')[0]
-    s.style = 'position: absolute'
-  }
-
   const getYelpJSON = async (id) => {
     const res = await fetch(`/listings/Yelp/business/${id}`)
     return res.json()
@@ -62,7 +56,7 @@ const viewModel = function(params) {
               <h6>${json.phone}</h6>
             </div>
             `
-          polishInfoWindowDesign()
+          //polishInfoWindowDesign()
         })
         .catch((err) => {
           console.error(err)
