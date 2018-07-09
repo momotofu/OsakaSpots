@@ -22,7 +22,8 @@ const viewModel = function(params) {
   //////////////////////////////////////////////////////////////////////////////
 
   this.zoomToListing = (listing) => {
-    console.log(`zoom to ${listing.title}`)
+    this.map.setCenter({ lat: listing.lat, lng: listing.lng })
+    this.map.setZoom(15)
   }
 
   const getYelpJSON = async (id) => {
