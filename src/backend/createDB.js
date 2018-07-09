@@ -24,7 +24,7 @@ async function main() {
           yelpId: 'kVS18Mt-PRd3eeJm0r8JJg',
           icon: 'pin',
           title: 'Tori No Keiji',
-          category: ['food', 'ramen'],
+          category: 'food, ramen',
           lat: 34.5549130004266,
           lng: 135.506566336266
         },
