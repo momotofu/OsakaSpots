@@ -88,6 +88,16 @@ const viewModel = function(params) {
     // add event listeners
     marker.addListener('click', function() {
       populateInfoWindow(this, that.infoWindow)
+
+      // animate marker
+      if (this.getAnimation() != null) {
+          this.setAnimation(null);
+      } else {
+          this.setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout(() => {
+            this.setAnimation(null)
+          }, 2000)
+      }
     })
 
     return marker
