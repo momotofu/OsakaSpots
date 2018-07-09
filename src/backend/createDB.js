@@ -32,7 +32,7 @@ async function main() {
           yelpId: '795ar5z7At4Hd2U8HVSCJw',
           icon: 'pin',
           title: 'Critters Burger',
-          category: 'food, burger, american',
+          category: 'food, burger, burgers, american',
           lat: 34.6742121,
           lng: 135.4986354
         },
@@ -48,7 +48,7 @@ async function main() {
           yelpId: 'sk1FbgrpJKFb1tomMCRA4Q',
           icon: 'pin',
           title: 'El Pancho Shinsaibashi',
-          category: 'food, mexican, tacos, burritos',
+          category: 'food, mexican, tacos, taco, burritos',
           lat: 34.6748287,
           lng: 135.5011935
         }

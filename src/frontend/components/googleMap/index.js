@@ -165,7 +165,7 @@ const viewModel = function(params) {
   this.instantiateMap = function() {
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 34.629900, lng: 135.496302},
-      zoom: 13,
+      zoom: 12,
       mapTypeControl: false
     });
     this.infoWindow =  new google.maps.InfoWindow();
