@@ -29,28 +29,28 @@ async function main() {
           lng: 135.506566336266
         },
         {
-          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
+          yelpId: '795ar5z7At4Hd2U8HVSCJw',
           icon: 'pin',
-          title: 'Park',
-          category: 'recreation',
-          lat: 1.23,
-          lng: 12.4
+          title: 'Critters Burger',
+          category: 'food, burger, american',
+          lat: 34.6742121,
+          lng: 135.4986354
         },
         {
-          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
+          yelpId: 'FElFjUQAlCG7Bx6Sks8tUQ',
           icon: 'pin',
-          title: 'Museum',
-          category: 'Science',
-          lat: 1.23,
-          lng: 12.4
+          title: 'Toho Cinemas Namba annex',
+          category: 'movie, entertainment, movietheaters, cinema',
+          lat: 34.665792,
+          lng: 135.503163
         },
         {
-          yelpId: '_ncMVMISgAlRJ6mKbOWljw',
+          yelpId: 'sk1FbgrpJKFb1tomMCRA4Q',
           icon: 'pin',
-          title: 'Namba',
-          category: 'city',
-          lat: 1.23,
-          lng: 12.4
+          title: 'El Pancho Shinsaibashi',
+          category: 'food, mexican, tacos, burritos',
+          lat: 34.6748287,
+          lng: 135.5011935
         }
       ])
   })
