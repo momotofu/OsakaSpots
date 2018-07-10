@@ -23,9 +23,11 @@ render()
 // import and register components
 import GoogleMap from './components/googleMap'
 import ControlPanel from './components/controlPanel'
+import ListingSearchbar from './components/listingSearchbar'
 
 ko.components.register('googlemap', GoogleMap)
 ko.components.register('controlpanel', ControlPanel)
+ko.components.register('listingsearchbar', ListingSearchbar)
 
 // apply bindings for main ViewModel
 function Main() {

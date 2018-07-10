@@ -1,6 +1,5 @@
-nav.navbar.text-center
-  strong(style="margin:auto").navbar__title OsakaSpots
+ListingSearchbar
 main.container-flex
   div.row
-    controlpanel(params="callback: initControlPanel").col-4
-  googlemap(params="callback: initMaps")
+    ControlPanel(params="callback: initControlPanel").col-4
+  GoogleMap(params="callback: initMaps")
