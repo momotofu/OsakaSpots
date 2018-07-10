@@ -1,12 +1,12 @@
 import * as ko from 'knockout'
-import * as $ from 'jquery'
 import * as Fuse from 'fuse.js'
+import * as $ from 'jquery'
 
-import googleMap from './controlPanel'
+import controlPanel from './controlPanel'
 import Listing from './listing'
 import './styles'
 
-const template = googleMap()
+const template = controlPanel()
 const viewModel = function(params) {
   //////////////////////////////////////////////////////////////////////////////
   // constants
@@ -93,11 +93,11 @@ const viewModel = function(params) {
     // create a new Fuse.js fuzzy search instance
     this.fuse = new Fuse(listings, {
       shouldSort: true,
-      threshold: 0.1,
+      threshold: 0.6,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
-      minMatchCharlength: 2,
+      minMatchCharlength: 1,
       keys: [
         "title",
         "category"
