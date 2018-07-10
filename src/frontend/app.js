@@ -31,7 +31,7 @@ ko.components.register('listingsearchbar', ListingSearchbar)
 
 // apply bindings for main ViewModel
 function Main() {
-  console.log('Knockout is a runnin\' yah')
+  console.log('Knockout is a runnin\' yah. Check out my favorite spots in Osaka Japan!')
   this.listings = []
   this.googleMapsVMInstance = null
   this.controlPanelVMInstance = null
