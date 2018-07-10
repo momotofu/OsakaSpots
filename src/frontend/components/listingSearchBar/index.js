@@ -15,35 +15,35 @@ const viewModel = function(params) {
   // observables
   //////////////////////////////////////////////////////////////////////////////
 
+  this.inputData = ko.observable({
+    searchString: null,
+    enterPressed: false
+  })
+
   //////////////////////////////////////////////////////////////////////////////
   // methods
   //////////////////////////////////////////////////////////////////////////////
 
   this.searchInputChange = (viewModel, event) => {
     event.preventDefault()
-    const searchString = event.data
+    this.inputData({
+      searchString: event.data,
+      enterPressed: false
+    })
+  }
 
-    // update visable listings with fuse results
-    if (searchString && searchString.length >= 1) {
-      // prevent listings flicker and extra work
-      if (this.visableListings().length === 1) return
-
-      this.fuse.list = this.visableListings() // narrow data sample on each query
-      this.setVisableListings(this.fuse.search(event.data))
-
-    } else {
-      this.setVisableListings(this.listings())
-    }
 
   this.searchInputEnter = (viewModel, event) => {
     event.preventDefault()
-    const listings = viewModel.visableListings()
+    this.inputData({
+      searchString: event.data,
+      enterPressed: true
+    })
 
-    if (listings.length > 0)
-      this.selectedListing(listings[0])
   }
 
-  }
+  // keep this function at the bottom of this class
+  params.callback(this)
 }
 
 export default { viewModel, template }

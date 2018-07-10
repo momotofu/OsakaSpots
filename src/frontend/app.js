@@ -34,6 +34,7 @@ function Main() {
   console.log('Knockout is a runnin\' yah')
   this.listings = []
   this.googleMapsVMInstance = null
+  this.controlPanelVMInstance = null
 
   this.initMaps = function(GoogleMapsVM) {
     GoogleMapsVM.setListings(this.listings)
@@ -56,6 +57,15 @@ function Main() {
 
     })
     controlPanel.init()
+
+    this.controlPanelVMInstance = controlPanel
+  }.bind(this)
+
+  this.initListingSearchbar = function(ListingSearchbar) {
+    ListingSearchbar.inputData.subscribe((inputData) => {
+      this.controlPanelVMInstance.setSearchInputData(inputData)
+    })
+
   }.bind(this)
 
 }

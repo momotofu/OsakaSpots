@@ -21,6 +21,7 @@ const viewModel = function(params) {
   this.visableListings = ko.observableArray([])
   this.listings = ko.observableArray([])
   this.selectedListing = ko.observable()
+  this.searchInputData = ko.observable()
 
   //////////////////////////////////////////////////////////////////////////////
   // setters
@@ -32,6 +33,10 @@ const viewModel = function(params) {
 
   this.setVisableListings = (listings) => {
     this.visableListings(listings)
+  }
+
+  this.setSearchInputData = (inputData) => {
+    this.searchInputData(inputData)
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -60,6 +65,30 @@ const viewModel = function(params) {
   /////////////////////////////////////////////////////////////////////////////
   // subscriptions
   ////////////////////////////////////////////////////////////////////////////
+
+  this.searchInputData.subscribe((inputData) => {
+    if (inputData.enterPressed) {
+      const listings = this.visableListings()
+
+      if (listings.length > 0)
+        this.selectedListing(listings[0])
+      return
+    }
+
+    const searchString = inputData.searchString
+    // update visable listings with fuse results
+    if (searchString && searchString.length >= 1) {
+      // prevent listings flicker and extra work
+      if (this.visableListings().length === 1) return
+
+      this.fuse.list = this.visableListings() // narrow data sample on each query
+      this.setVisableListings(this.fuse.search(event.data))
+
+    } else {
+      this.setVisableListings(this.listings())
+    }
+
+  })
 
   // any time listings is updated, update the DOM as well
   this.listings.subscribe((listings) => {
