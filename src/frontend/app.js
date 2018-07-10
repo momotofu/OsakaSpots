@@ -1,6 +1,6 @@
 // dependencies
 import * as ko from 'knockout'
-import mainPage from './mainPage.pug'
+import mainPage from './components/mainPage'
 import { keyhandlerBindingFactory } from './utils'
 
 const ENTER_KEY = 13
@@ -14,7 +14,7 @@ ko.bindingHandlers.enterKey = keyhandlerBindingFactory(ENTER_KEY)
 function render() {
   const element = document.createElement('div')
 
-  element.innerHTML = mainPage()
+  element.innerHTML = mainPage
   rootElement.prepend(element)
 }
 
