@@ -2,6 +2,7 @@ import * as ko from 'knockout'
 
 import googleMap from './googleMap.pug'
 import './index.styl'
+import infoWindowTemplate from './infoWindow.pug'
 
 const template = googleMap()
 const viewModel = function(params) {
@@ -47,18 +48,14 @@ const viewModel = function(params) {
       getYelpJSON(marker.id)
         .then((json) => {
           const infoWindowEl = document.getElementById('infoWindow')
-          infoWindowEl.innerHTML = `
-            <img class="card-img-top card-img" src=${json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg'}>
-            <div class="card-body">
-              <h5 class="card-title">${json.name}</h5>
-              <h6 class="card-subtitle mb-1">${json.alias}</h6>
-              <a href=${json.url} target="_blank" class="card-link">check it out on yelp</a>
-              <hr />
-              <strong class="mb-2">rating: ${json.rating} stars</strong>
-              <h6>${json.phone}</h6>
-            </div>
-            `
-          //polishInfoWindowDesign()
+          infoWindowEl.innerHTML = infoWindowTemplate({
+            imageSource: json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg',
+            name: json.name,
+            alias: json.alias,
+            url: json.url,
+            rating: json.rating,
+            phone: json.phone
+          })
         })
         .catch((err) => {
           console.error(err)
