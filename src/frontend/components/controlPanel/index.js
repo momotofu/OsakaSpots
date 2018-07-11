@@ -22,6 +22,7 @@ const viewModel = function(params) {
   this.listings = ko.observableArray([])
   this.selectedListing = ko.observable()
   this.searchInputData = ko.observable()
+  this.isHidden = ko.observable(false)
 
   //////////////////////////////////////////////////////////////////////////////
   // setters
@@ -60,14 +61,30 @@ const viewModel = function(params) {
   this.controlPanelListingClick = (listing, event) => {
     event.preventDefault()
     this.selectedListing(listing)
+    this.isHidden(true)
   }
 
   /////////////////////////////////////////////////////////////////////////////
   // subscriptions
   ////////////////////////////////////////////////////////////////////////////
 
+  this.isHidden.subscribe((isHidden) => {
+    if (isHidden) {
+      $('.control-panel').animate({
+        left: '-100vw'
+      }, 200)
+    } else {
+      $('.control-panel').animate({
+        left: '0'
+      }, 200)
+    }
+  })
+
   this.searchInputData.subscribe((inputData) => {
+    this.isHidden(false)
+
     if (inputData.enterPressed) {
+      this.isHidden(true)
       const listings = this.visableListings()
 
       if (listings.length > 0)
