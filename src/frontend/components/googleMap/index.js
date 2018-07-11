@@ -49,7 +49,7 @@ const viewModel = function(params) {
         .then((json) => {
           const infoWindowEl = document.getElementById('infoWindow')
           infoWindowEl.innerHTML = infoWindowTemplate({
-            imageSource: json.image_url.length > 0 ? json.image_url : '/images/mysteryListing.jpg',
+            imageSource: json.image_url.length > 0 ? json.image_url : '/assets/images/i_dont_know.gif',
             name: json.name,
             alias: json.alias,
             url: json.url,

@@ -33,6 +33,10 @@ module.exports = router => {
     res.sendFile(path.resolve(__dirname, `../../dist/${req.params.filename}`))
   })
 
+  router.get('/assets/images/:filename', (req, res) => {
+    res.sendFile(path.resolve(__dirname, `../../dist/images/${req.params.filename}`))
+  })
+
   router.get('/', async (req, res) => {
     const indexTemplate = await pug.compileFile(path.resolve(__dirname, '../frontend/index.pug'))
 
