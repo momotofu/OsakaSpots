@@ -16,7 +16,7 @@ async function main() {
           yelpId: '_ncMVMISgAlRJ6mKbOWljw',
           icon: 'pin',
           title: 'Bell cafe',
-          category: 'food',
+          category: 'food, cafe',
           lat: 34.5441948584636,
           lng: 135.531021729112
         },
