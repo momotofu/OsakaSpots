@@ -109,7 +109,15 @@ const viewModel = function(params) {
   // this is called whenever the visable markers in the control panel
   // component are updated
   this.updateMarkers = (listings) => {
-    if (!this.map) return
+    if (!this.map) return;
+    if (listings.length == Object.keys(this.markers).length) {
+      this.map.setZoom(12)
+      this.map.setCenter({ lat: 34.629900, lng:135.496302})
+
+      if (this.infoWindow) {
+        this.infoWindow.setMap(null)
+      }
+    }
 
     // set all markers to not visible
     for (let key in this.markers) {
