@@ -1,9 +1,10 @@
-img.card-img-top.card-img(src=imageSource)
-div.card-body
-  h5.card-title #{name}
-  h6.card-subtitle.mb-1 #{alias}
-  a.card-link(href=url, target="_blank") check it out on yelp
-  hr
-  strong.mb-2.mt-1 rating: #{rating} stars
-  h6 #{phone}
+.infoWindowCard
+  img.card-img-top.card-img(src=imageSource)
+  div.card-body
+    h5.card-title #{name}
+    h6.card-subtitle.mb-1 #{alias}
+    a.infoWindowCard-link.card-link(href=url, target="_blank") check it out on yelp
+    hr
+    strong.text-bold.mb-2 rating: #{rating} stars
+    h6 #{phone}
 
