@@ -99,7 +99,7 @@ const viewModel = function(params) {
       if (this.visableListings().length === 1) return
 
       this.fuse.list = this.visableListings() // narrow data sample on each query
-      this.setVisableListings(this.fuse.search(event.data))
+      this.setVisableListings(this.fuse.search(searchString))
 
     } else {
       this.setVisableListings(this.listings())
@@ -112,7 +112,7 @@ const viewModel = function(params) {
     // create a new Fuse.js fuzzy search instance
     this.fuse = new Fuse(listings, {
       shouldSort: true,
-      threshold: 0.1,
+      threshold: 0.4,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
