@@ -4,5 +4,6 @@ nav.navbar
     input.listingSearchbar__input#searchInput(
       type="text",
       placeholder="Search OsakaSpots (i.e. ramen, onsen)",
-      data-bind="event: { input: searchInputChange }, enterKey: searchInputEnter",
+      data-bind=`event: { input: searchInputChange, focusin: startTimer,
+      focusout: stopTimer }, enterKey: searchInputEnter`,
       autofocus)

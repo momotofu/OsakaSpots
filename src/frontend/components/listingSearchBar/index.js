@@ -44,16 +44,31 @@ const viewModel = function(params) {
 
   // cursor logic
   var cursorIsHidden = false
+  var timerId = null
 
-  window.setInterval(() => {
-    cursorIsHidden = !cursorIsHidden
+  const flickerCursor = () => {
+     cursorIsHidden = !cursorIsHidden
 
-    if (cursorIsHidden)
-      inputCursor.style.opacity = 1
-    else
-      inputCursor.style.opacity = 0
+      if (cursorIsHidden)
+        inputCursor.style.opacity = 1
+      else
+        inputCursor.style.opacity = 0
+  }
 
-  }, 700)
+  this.startTimer = () => {
+    // flicker cursor once on focus
+    flickerCursor()
+
+    // set a repeating timer, and capture interval id for focusout event
+    timerId = window.setInterval(() => {
+      flickerCursor()
+    }, 700)
+  }
+
+  this.stopTimer = () => {
+    clearTimeout(timerId)
+    inputCursor.style.opacity = 0
+  }
 
   const updateCursor = (length) => {
     if (length === 1)
