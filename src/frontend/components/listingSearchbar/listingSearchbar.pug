@@ -1,6 +1,8 @@
-nav.navbar.listingSearchbar
-  input.listingSearchbar__input#searchInput(
-    type="text",
-    placeholder="Search OsakaSpots (i.e. ramen, onsen)",
-    data-bind="event: { input: searchInputChange }, enterKey: searchInputEnter",
-    autofocus)
+nav.navbar
+  .listingSearchbar#listingSearchbar
+    div.listingSearchbar__cursor
+    input.listingSearchbar__input#searchInput(
+      type="text",
+      placeholder="Search OsakaSpots (i.e. ramen, onsen)",
+      data-bind="event: { input: searchInputChange }, enterKey: searchInputEnter",
+      autofocus)
