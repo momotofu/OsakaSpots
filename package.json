@@ -6,6 +6,7 @@
   "scripts": {
     "start": "concurrently --kill-others \"webpack-dev-server --mode development --progress --colors --port 2992\" \"source ./src/backend/exports.sh; export PORT=8080; export NODE_ENV=development; nodemon ./src/backend/server.js\"",
     "build": "rm dist/*; webpack --mode production --progress --profile --colors",
+    "prod": "source ./src/backend/exports.sh; node ./src/backend/server.js",
     "migrate": "knex migrate:latest --knexfile src/backend/knexfile.js"
   },
   "repository": {
