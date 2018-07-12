@@ -99,7 +99,7 @@ const viewModel = function(params) {
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(() => {
           this.setAnimation(null)
-        }, 2000)
+        }, 1400)
     }
   }
 
