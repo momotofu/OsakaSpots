@@ -1,5 +1,5 @@
 # osokaspots
-A map of all all my favorite places in Osaka, Japan.
+This is a full-stack node.js application which allows users to search through a map of all all my favorite places in Osaka, Japan. If you're ever in the Osaka area, I recommend these OsakaSpots.
 
 ![Alt text](/app_screen_shot.png?raw=true "App Screen Shot")
 
