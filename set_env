@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# remove any pre-existing export.sh fle
+if [ -f src/backend/exports.sh ]; then
+  rm src/backend/exports.sh
+fi
+
+# list of required API services
+APIServices=(
+  GOOGLE_MAPS_API_KEY
+  YELP_API_KEY
+)
+
+# loop through each API service and prompt the user for a key
+for service in "${APIServices[@]}"; do
+   read -p "Enter the key for $service: " key
+
+   # write key to exports file
+   echo "export $service=\"$key\"" >> ./src/backend/exports.sh
+done
+
+echo "API keys saved to src/backend/exports.sh. The app is now ready to run"
