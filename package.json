@@ -26,11 +26,7 @@
     "bootstrap": "^4.1.1",
     "concurrently": "^3.6.0",
     "css-loader": "^0.28.11",
-    "fuse.js": "^3.2.1",
-    "jquery": "^3.3.1",
-    "knockout": "^3.4.2",
     "nodemon": "^1.17.5",
-    "popper.js": "^1.14.3",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
     "style-loader": "^0.21.0",
@@ -41,6 +37,10 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "fuse.js": "^3.2.1",
+    "jquery": "^3.3.1",
+    "knockout": "^3.4.2",
+    "popper.js": "^1.14.3",
     "express": "^4.16.3",
     "express-promise-router": "^3.0.2",
     "knex": "^0.14.6",
