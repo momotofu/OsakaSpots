@@ -27,7 +27,6 @@
     "concurrently": "^3.6.0",
     "css-loader": "^0.28.11",
     "nodemon": "^1.17.5",
-    "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
     "style-loader": "^0.21.0",
     "stylus": "^0.54.5",
@@ -37,6 +36,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "pug": "^2.0.3",
     "fuse.js": "^3.2.1",
     "jquery": "^3.3.1",
     "knockout": "^3.4.2",
