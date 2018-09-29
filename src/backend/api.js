@@ -40,6 +40,7 @@ module.exports = router => {
   router.get('/', async (req, res) => {
     const indexTemplate = await pug.compileFile(path.resolve(__dirname, '../frontend/index.pug'))
 
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.send(indexTemplate({
       scriptPath: devMode ? 'http://localhost:2992/assets/bundle.js' : bundlePath,
       googleMapsAPIKey: googleMapsAPIKey
